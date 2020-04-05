@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leqiang222.ssm.dao.ProductDao">
+
+    <resultMap type="com.leqiang222.ssm.entity.Product" id="ProductMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="productNum" column="product_num" jdbcType="VARCHAR"/>
+        <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+        <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
+        <result property="departureTime" column="departure_time" jdbcType="TIMESTAMP"/>
+        <result property="productPrice" column="product_price" jdbcType="NUMERIC"/>
+        <result property="productDesc" column="product_desc" jdbcType="VARCHAR"/>
+        <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="ProductMap">
+        select
+          id, product_num, product_name, city_name, departure_time, product_price, product_desc, product_status
+        from ssm.product
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="ProductMap">
+        select
+          id, product_num, product_name, city_name, departure_time, product_price, product_desc, product_status
+        from ssm.product
+        <if test="limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="ProductMap">
+        select
+          id, product_num, product_name, city_name, departure_time, product_price, product_desc, product_status
+        from ssm.product
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="productNum != null and productNum != ''">
+                and product_num = #{productNum}
+            </if>
+            <if test="productName != null and productName != ''">
+                and product_name = #{productName}
+            </if>
+            <if test="cityName != null and cityName != ''">
+                and city_name = #{cityName}
+            </if>
+            <if test="departureTime != null">
+                and departure_time = #{departureTime}
+            </if>
+            <if test="productPrice != null">
+                and product_price = #{productPrice}
+            </if>
+            <if test="productDesc != null and productDesc != ''">
+                and product_desc = #{productDesc}
+            </if>
+            <if test="productStatus != null">
+                and product_status = #{productStatus}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ssm.product(product_num, product_name, city_name, departure_time, product_price, product_desc, product_status)
+        values (#{productNum}, #{productName}, #{cityName}, #{departureTime}, #{productPrice}, #{productDesc}, #{productStatus})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ssm.product
+        <set>
+            <if test="productNum != null and productNum != ''">
+                product_num = #{productNum},
+            </if>
+            <if test="productName != null and productName != ''">
+                product_name = #{productName},
+            </if>
+            <if test="cityName != null and cityName != ''">
+                city_name = #{cityName},
+            </if>
+            <if test="departureTime != null">
+                departure_time = #{departureTime},
+            </if>
+            <if test="productPrice != null">
+                product_price = #{productPrice},
+            </if>
+            <if test="productDesc != null and productDesc != ''">
+                product_desc = #{productDesc},
+            </if>
+            <if test="productStatus != null">
+                product_status = #{productStatus},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ssm.product where id = #{id}
+    </delete>
+
+</mapper>

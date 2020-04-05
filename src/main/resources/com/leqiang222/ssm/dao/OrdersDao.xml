@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leqiang222.ssm.dao.OrdersDao">
+
+    <resultMap type="com.leqiang222.ssm.entity.Orders" id="OrdersMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
+        <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
+        <result property="peopleCount" column="people_count" jdbcType="INTEGER"/>
+        <result property="orderDesc" column="order_desc" jdbcType="VARCHAR"/>
+        <result property="payType" column="pay_type" jdbcType="INTEGER"/>
+        <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="INTEGER"/>
+        <result property="memberId" column="member_id" jdbcType="INTEGER"/>
+        <association property="product" column="product_id" javaType="com.leqiang222.ssm.entity.Product">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="productNum" column="product_num" jdbcType="VARCHAR"/>
+            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
+            <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
+            <result property="departureTime" column="departure_time" jdbcType="TIMESTAMP"/>
+            <result property="productPrice" column="product_price" jdbcType="NUMERIC"/>
+            <result property="productDesc" column="product_desc" jdbcType="VARCHAR"/>
+            <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+        </association>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="OrdersMap">
+        select
+          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id
+        from ssm.orders
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrdersMap">
+         select orders.*, product.* from orders , product where orders.product_id = product.id
+        limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="OrdersMap">
+        select
+          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id
+        from ssm.orders
+        <where>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+            <if test="orderNum != null and orderNum != ''">
+                and order_num = #{orderNum}
+            </if>
+            <if test="orderTime != null">
+                and order_time = #{orderTime}
+            </if>
+            <if test="peopleCount != null">
+                and people_count = #{peopleCount}
+            </if>
+            <if test="orderDesc != null and orderDesc != ''">
+                and order_desc = #{orderDesc}
+            </if>
+            <if test="payType != null">
+                and pay_type = #{payType}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            <if test="productId != null">
+                and product_id = #{productId}
+            </if>
+            <if test="memberId != null">
+                and member_id = #{memberId}
+            </if>
+        </where>
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ssm.orders(order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id)
+        values (#{orderNum}, #{orderTime}, #{peopleCount}, #{orderDesc}, #{payType}, #{orderStatus}, #{productId}, #{memberId})
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update ssm.orders
+        <set>
+            <if test="orderNum != null and orderNum != ''">
+                order_num = #{orderNum},
+            </if>
+            <if test="orderTime != null">
+                order_time = #{orderTime},
+            </if>
+            <if test="peopleCount != null">
+                people_count = #{peopleCount},
+            </if>
+            <if test="orderDesc != null and orderDesc != ''">
+                order_desc = #{orderDesc},
+            </if>
+            <if test="payType != null">
+                pay_type = #{payType},
+            </if>
+            <if test="orderStatus != null">
+                order_status = #{orderStatus},
+            </if>
+            <if test="productId != null">
+                product_id = #{productId},
+            </if>
+            <if test="memberId != null">
+                member_id = #{memberId},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete from ssm.orders where id = #{id}
+    </delete>
+
+</mapper>
