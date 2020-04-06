@@ -43,8 +43,8 @@ public class Test03SpringMabatis {
 //        System.out.println(listProduct);
 //
 //
-        List<User> listOrders = userDao.queryAllByLimit(0, 0);
-        System.out.println(listOrders);
+        User user = userDao.queryById(1L);
+        System.out.println(user);
 
 //        Product product = new Product();
 //        product.setCityName("3");

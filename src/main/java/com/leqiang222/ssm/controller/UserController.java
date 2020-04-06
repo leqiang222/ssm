@@ -52,6 +52,20 @@ public class UserController {
     }
 
     /**
+     * 查找所有用户
+     * @return
+     * @throws Exception
+     */
+    @RequestMapping("/findAll.do")
+    public ModelAndView findAll() throws Exception {
+        ModelAndView mv = new ModelAndView();
+        List<User> userList = userService.queryAllByLimit(0,0);
+        mv.addObject("userList", userList);
+        mv.setViewName("user-list");
+        return mv;
+    }
+
+    /**
      * 查询用户以及用户可以添加的角色
      * @param userid
      * @return
@@ -97,20 +111,6 @@ public class UserController {
                                 @RequestParam(name = "ids", required = true) String[] roleIds) {
         userService.addRoleToUser(userId, roleIds);
         return "redirect:findAll.do";
-    }
-
-    /**
-     * 查找所有用户
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("/findAll.do")
-    public ModelAndView findAll() throws Exception {
-        ModelAndView mv = new ModelAndView();
-        List<User> userList = userService.queryAllByLimit(0,0);
-        mv.addObject("userList", userList);
-        mv.setViewName("user-list");
-        return mv;
     }
 
 }

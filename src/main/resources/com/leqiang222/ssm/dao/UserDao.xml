@@ -3,30 +3,30 @@
 <mapper namespace="com.leqiang222.ssm.dao.UserDao">
 
     <resultMap type="com.leqiang222.ssm.entity.User" id="UserMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="userName" column="user_name" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
         <collection property="roles" ofType="com.leqiang222.ssm.entity.Role">
-            <id column="id" property="id"></id>
-            <result column="roleName" property="role_name"></result>
-            <result column="roleDesc" property="role_desc"></result>
+            <id property="id" column="role_id"></id>
+            <result property="roleName" column="role_name"></result>
+            <result property="roleDesc" column="role_desc"></result>
         </collection>
     </resultMap>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
-        select * from ssm.user
-        left outer join users_role on user.id = users_role.user_id
-        left outer join role on role.id = users_role.role_id
+        select *, role.id as role_id from user
+        left join users_role on user.id = users_role.user_id
+        left join role on users_role.role_id = role.id
         where user.id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
-        select * from user
+        select *, role.id as role_id from user
         left outer join users_role on user.id = users_role.user_id
         left outer join role on role.id = users_role.role_id
         <if test="limit != 0">
