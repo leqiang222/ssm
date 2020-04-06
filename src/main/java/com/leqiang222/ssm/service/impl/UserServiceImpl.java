@@ -3,6 +3,8 @@ package com.leqiang222.ssm.service.impl;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.dao.UserDao;
 import com.leqiang222.ssm.service.UserService;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -75,5 +77,37 @@ public class UserServiceImpl implements UserService {
 
     public void addRoleToUser(String userId, String[] roleIds) {
         userDao.addRoleToUser(userId, roleIds);
+    }
+
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        User userInfo = null;
+        try {
+            User user = new User();
+            user.setUserName(s);
+            List<User> list = userDao.queryAll(user);
+            if (list.size() == 1) {
+                userInfo = list.get(0);
+            }else {
+                userInfo = null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (userInfo == null) {
+            return null;
+        }
+
+        //处理自己的用户对象封装成UserDetails
+        org.springframework.security.core.userdetails.User user =
+                new org.springframework.security.core.userdetails.User(userInfo.getUserName(),
+                        userInfo.getPassword(),
+                        userInfo.getStatus() == 0 ? false : true,
+                        true,
+                        true,
+                        true,
+                        null);
+
+        return user;
     }
 }

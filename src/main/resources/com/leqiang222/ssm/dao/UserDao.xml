@@ -9,6 +9,11 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
+        <collection property="roles" ofType="com.leqiang222.ssm.entity.Role">
+            <id column="id" property="id"></id>
+            <result column="roleName" property="role_name"></result>
+            <result column="roleDesc" property="role_desc"></result>
+        </collection>
     </resultMap>
 
     <!--查询单个-->
@@ -21,12 +26,11 @@
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
-        select
-          id, user_name, email, password, phone_num, status
-        from ssm.user
+        select * from user left outer join users_role on user.id = users_role.user_id
         <if test="limit != 0">
             limit #{offset}, #{limit}
         </if>
+
     </select>
 
     <!--通过实体作为筛选条件查询-->

@@ -1,6 +1,10 @@
 package com.leqiang222.ssm.entity;
 
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (User)实体类
@@ -24,4 +28,20 @@ public class User implements Serializable {
     private String phoneNum;
     
     private Integer status;
+
+    private List<Role> roles;
+
+    // MARK:
+    private String statusStr;
+
+    public String getStatusStr() {
+        //状态0 未开启 1 开启
+        if (status == 0) {
+            statusStr = "未开启";
+        } else if (status == 1) {
+            statusStr = "开启";
+        }
+        return statusStr;
+    }
+
 }

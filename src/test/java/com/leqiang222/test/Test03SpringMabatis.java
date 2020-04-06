@@ -2,8 +2,10 @@ package com.leqiang222.test;
 
 import com.leqiang222.ssm.dao.OrdersDao;
 import com.leqiang222.ssm.dao.ProductDao;
+import com.leqiang222.ssm.dao.UserDao;
 import com.leqiang222.ssm.entity.Orders;
 import com.leqiang222.ssm.entity.Product;
+import com.leqiang222.ssm.entity.User;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,8 @@ public class Test03SpringMabatis {
     private ProductDao productDao;
     @Autowired
     private OrdersDao ordersDao;
+    @Autowired
+    private UserDao userDao;
 
     @Before
     public void before() {
@@ -39,7 +43,7 @@ public class Test03SpringMabatis {
 //        System.out.println(listProduct);
 //
 //
-        List<Orders> listOrders = ordersDao.queryAllByLimit(1, 1);
+        List<User> listOrders = userDao.queryAllByLimit(0, 0);
         System.out.println(listOrders);
 
 //        Product product = new Product();

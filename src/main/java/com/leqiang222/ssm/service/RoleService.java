@@ -1,17 +1,15 @@
 package com.leqiang222.ssm.service;
 
-import com.leqiang222.ssm.entity.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
+import com.leqiang222.ssm.entity.Role;
 import java.util.List;
 
 /**
- * (User)表服务接口
+ * (Role)表服务接口
  *
  * @author makejava
- * @since 2020-04-05 19:04:01
+ * @since 2020-04-06 11:22:39
  */
-public interface UserService extends UserDetailsService {
+public interface RoleService {
 
     /**
      * 通过ID查询单条数据
@@ -19,7 +17,7 @@ public interface UserService extends UserDetailsService {
      * @param id 主键
      * @return 实例对象
      */
-    User queryById(Long id);
+    Role queryById(Long id);
 
     /**
      * 查询多条数据
@@ -28,23 +26,23 @@ public interface UserService extends UserDetailsService {
      * @param limit 查询条数
      * @return 对象列表
      */
-    List<User> queryAllByLimit(int offset, int limit);
+    List<Role> queryAllByLimit(int offset, int limit);
 
     /**
      * 新增数据
      *
-     * @param user 实例对象
+     * @param role 实例对象
      * @return 实例对象
      */
-    User insert(User user);
+    Role insert(Role role);
 
     /**
      * 修改数据
      *
-     * @param user 实例对象
+     * @param role 实例对象
      * @return 实例对象
      */
-    User update(User user);
+    Role update(Role role);
 
     /**
      * 通过主键删除数据
@@ -53,12 +51,5 @@ public interface UserService extends UserDetailsService {
      * @return 是否成功
      */
     boolean deleteById(Long id);
-
-    /**
-     * 给用户添加角色数组
-     * @param userId
-     * @param roleIds
-     */
-    void addRoleToUser(String userId, String[] roleIds);
 
 }

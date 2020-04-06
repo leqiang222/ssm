@@ -3,6 +3,7 @@ package com.leqiang222.ssm.controller;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,6 +22,15 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+
+
+//    //给用户添加角色
+//    @RequestMapping("/login.do")
+//    public String addRoleToUser(@RequestParam(name = "username", required = true) String username,
+//                                @RequestParam(name = "password", required = true) String password) {
+//        UserDetails userDetails = userService.loadUserByUsername(username);
+//
+//    }
 
     //给用户添加角色
     @RequestMapping("/addRoleToUser.do")
