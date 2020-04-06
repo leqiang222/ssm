@@ -160,7 +160,7 @@
                         </tr>
                         </thead>
                         <tr data-tt-id="0">
-                            <td colspan="2">${user.username}</td>
+                            <td colspan="2">${user.userName}</td>
                         </tr>
                         <tbody>
                         <c:forEach items="${user.roles}" var="role" varStatus="vs">
@@ -168,12 +168,12 @@
                                 <td>${role.roleName}</td>
                                 <td>${role.roleDesc}</td>
                             </tr>
-                            <c:forEach items="${role.permissions}" var="p">
-                                <tr data-tt-id="1-1" data-tt-parent-id="${vs.index+1}">
-                                    <td>${p.permissionName}</td>
-                                    <td>${p.url}</td>
-                                </tr>
-                            </c:forEach>
+<%--                            <c:forEach items="${role.permissions}" var="p">--%>
+<%--                                <tr data-tt-id="1-1" data-tt-parent-id="${vs.index+1}">--%>
+<%--                                    <td>${p.permissionName}</td>--%>
+<%--                                    <td>${p.url}</td>--%>
+<%--                                </tr>--%>
+<%--                            </c:forEach>--%>
                         </c:forEach>
                       </tbody>
                     </table>

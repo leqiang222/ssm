@@ -18,15 +18,17 @@
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">
-        select
-          id, user_name, email, password, phone_num, status
-        from ssm.user
-        where id = #{id}
+        select * from ssm.user
+        left outer join users_role on user.id = users_role.user_id
+        left outer join role on role.id = users_role.role_id
+        where user.id = #{id}
     </select>
 
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
-        select * from user left outer join users_role on user.id = users_role.user_id
+        select * from user
+        left outer join users_role on user.id = users_role.user_id
+        left outer join role on role.id = users_role.role_id
         <if test="limit != 0">
             limit #{offset}, #{limit}
         </if>

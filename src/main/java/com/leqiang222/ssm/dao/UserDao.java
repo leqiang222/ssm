@@ -36,7 +36,7 @@ public interface UserDao {
      * @param user 实例对象
      * @return 对象列表
      */
-    List<User> queryAll(User user);
+    List<User> queryAll(User user); 
 
     /**
      * 新增数据
