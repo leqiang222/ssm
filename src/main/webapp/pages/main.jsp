@@ -7,13 +7,12 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-	<title>ITCAST - AdminLTE2定制版</title>
-	<meta name="description" content="AdminLTE2定制版">
-	<meta name="keywords" content="AdminLTE2定制版">
+	<title>ITCAST - 后台管理系统</title>
+	<meta name="description" content="数据后台管理">
+	<meta name="keywords" content="数据后台管理">
 
 	<!-- Tell the browser to be responsive to screen width -->
-	<meta
-			content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+	<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 			name="viewport">
 	<!-- Bootstrap 3.3.6 -->
 	<!-- Font Awesome -->
@@ -140,10 +139,8 @@
 
 	<!-- 内容区域 -->
 	<div class="content-wrapper">
-
 		<img src="${pageContext.request.contextPath}/img/center.jpg"
 			 width="100%" height="100%" />
-
 	</div>
 	<!-- 内容区域 /-->
 
@@ -153,10 +150,9 @@
 			<b>Version</b> 1.0.8
 		</div>
 		<strong>Copyright &copy; 2014-2017
-			<a href="http://www.itcast.cn">研究院研发部</a>.
+			<a href="http://www.leqiang222.com">研究院研发部</a>.
 		</strong> All rights reserved. </footer>
 	<!-- 底部导航 /-->
-
 </div>
 
 <script

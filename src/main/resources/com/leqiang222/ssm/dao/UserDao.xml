@@ -24,6 +24,15 @@
         where user.id = #{id}
     </select>
 
+    <!--账号密码查询-->
+    <select id="queryByUserNamePassword" parameterType="java.lang.String" resultMap="UserMap">
+        SELECT * from `user` WHERE user_name = #{userName} AND `password` = #{password}
+    </select>
+
+    <select id="queryUserCount" resultType="Integer">
+        SELECT COUNT(*) FROM user;
+    </select>
+
     <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select *, role.id as role_id from user

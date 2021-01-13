@@ -45,7 +45,9 @@ public class UserController {
     @RequestMapping("/findById.do")
     public ModelAndView findById(String id) throws Exception {
         ModelAndView mv = new ModelAndView();
+
         User userInfo = userService.queryById(Long.valueOf(id));
+
         mv.addObject("user", userInfo);
         mv.setViewName("user-show1");
         return mv;
@@ -59,9 +61,14 @@ public class UserController {
     @RequestMapping("/findAll.do")
     public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
+
         List<User> userList = userService.queryAllByLimit(0,0);
-        mv.addObject("userList", userList);
+        Integer count =  userService.queryUserCount();
+
+        mv.addObject("att_userList", userList);
+        mv.addObject("att_userCount", count);
         mv.setViewName("user-list");
+
         return mv;
     }
 

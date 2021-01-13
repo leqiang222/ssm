@@ -32,6 +32,18 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
+     * @Description: 根据账号密码查询用户
+     * @Author-Date: leqiang222 2021/1/13 9:26 下午
+     */
+    public User queryByUserNamePassword(String userName, String password) {
+        return this.userDao.queryByUserNamePassword(userName, password);
+    }
+
+    public Integer queryUserCount() {
+        return this.userDao.queryUserCount();
+    }
+
+    /**
      * 查询多条数据
      *
      * @param offset 查询起始位置

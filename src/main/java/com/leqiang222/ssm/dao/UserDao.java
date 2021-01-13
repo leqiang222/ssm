@@ -1,6 +1,7 @@
 package com.leqiang222.ssm.dao;
 
 import com.leqiang222.ssm.entity.User;
+import com.sun.org.apache.xml.internal.utils.NSInfo;
 import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
@@ -19,6 +20,18 @@ public interface UserDao {
      * @return 实例对象
      */
     User queryById(Long id);
+
+    /**
+     * @Description: 根据账号密码查询用户
+     * @Author-Date: leqiang222 2021/1/13 9:26 下午
+     */
+    User queryByUserNamePassword(String userName, String password);
+
+    /**
+     * @Description: 查询user表个数
+     * @Author-Date: leqiang222 2021/1/13 10:13 下午
+     */
+    Integer queryUserCount();
 
     /**
      * 查询指定行数据

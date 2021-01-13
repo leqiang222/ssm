@@ -8,8 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <title>product-list1</title>
-    <meta name="description" content="AdminLTE2定制版">
-    <meta name="keywords" content="AdminLTE2定制版">
+    <meta name="description" content="后台管理系统">
+    <meta name="keywords" content="后台管理系统">
 
 
     <!-- Tell the browser to be responsive to screen width -->

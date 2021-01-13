@@ -8,9 +8,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>数据 - AdminLTE2定制版</title>
-<meta name="description" content="AdminLTE2定制版">
-<meta name="keywords" content="AdminLTE2定制版">
+<title>数据 - 后台管理系统</title>
+<meta name="description" content="后台管理系统">
+<meta name="keywords" content="后台管理系统">
 
 <!-- Tell the browser to be responsive to screen width -->
 <meta
@@ -75,7 +75,6 @@
 
 		<!-- 内容区域 -->
 		<div class="content-wrapper">
-
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
@@ -84,14 +83,11 @@
 			<ol class="breadcrumb">
 				<li><a href="${pageContext.request.contextPath}/index.jsp"><i
 						class="fa fa-dashboard"></i> 首页</a></li>
-				<li><a
-					href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
-
+				<li><a href="${pageContext.request.contextPath}/user/findAll.do">用户管理</a></li>
 				<li class="active">全部用户</li>
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
-
 				<!-- 正文区域 -->
 				<section class="content"> <!-- .box-body -->
 				<div class="box box-primary">
@@ -100,10 +96,8 @@
 					</div>
 
 					<div class="box-body">
-
 						<!-- 数据表格 -->
 						<div class="table-box">
-
 							<!--工具栏-->
 							<div class="pull-left">
 								<div class="form-group form-inline">
@@ -111,7 +105,6 @@
 										<button type="button" class="btn btn-default" title="新建" onclick="location.href='${pageContext.request.contextPath}/pages/user-add.jsp'">
 											<i class="fa fa-file-o"></i> 新建
 										</button>
-										
 										<button type="button" class="btn btn-default" title="刷新">
 											<i class="fa fa-refresh"></i> 刷新
 										</button>
@@ -145,7 +138,7 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${userList}" var="user">
+									<c:forEach items="${att_userList}" var="user">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${user.id }</td>
@@ -172,10 +165,8 @@
                             </tfoot>-->
 							</table>
 							<!--数据列表/-->
-
 						</div>
 						<!-- 数据表格 /-->
-
 					</div>
 					<!-- /.box-body -->
 
@@ -183,12 +174,10 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共2 页，共14 条数据。 每页 <select class="form-control">
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-									<option>4</option>
+								总共 x 页，共 ${att_userCount} 条数据。 每页
+								<select class="form-control">
 									<option>5</option>
+									<option>10</option>
 								</select> 条
 							</div>
 						</div>
@@ -197,11 +186,9 @@
 							<ul class="pagination">
 								<li><a href="#" aria-label="Previous">首页</a></li>
 								<li><a href="#">上一页</a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#">4</a></li>
-								<li><a href="#">5</a></li>
+								<c:forEach var="i" begin="1" end="${att_userCount} / 5 + 1">
+									<li><a href="#">i</a></li>
+								</c:forEach>
 								<li><a href="#">下一页</a></li>
 								<li><a href="#" aria-label="Next">尾页</a></li>
 							</ul>

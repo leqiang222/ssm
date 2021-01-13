@@ -22,6 +22,18 @@ public interface UserService extends UserDetailsService {
     User queryById(Long id);
 
     /**
+     * @Description: 根据账号密码查询用户
+     * @Author-Date: leqiang222 2021/1/13 9:26 下午
+     */
+    User queryByUserNamePassword(String userName, String password);
+
+    /**
+     * @Description: 查询user表个数
+     * @Author-Date: leqiang222 2021/1/13 10:13 下午
+     */
+    Integer queryUserCount();
+
+    /**
      * 查询多条数据
      *
      * @param offset 查询起始位置
