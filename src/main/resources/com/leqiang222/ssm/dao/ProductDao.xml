@@ -3,7 +3,7 @@
 <mapper namespace="com.leqiang222.ssm.dao.ProductDao">
 
     <resultMap type="com.leqiang222.ssm.entity.Product" id="ProductMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="productNum" column="product_num" jdbcType="VARCHAR"/>
         <result property="productName" column="product_name" jdbcType="VARCHAR"/>
         <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
@@ -66,8 +66,11 @@
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ssm.product(product_num, product_name, city_name, departure_time, product_price, product_desc, product_status)
-        values (#{productNum}, #{productName}, #{cityName}, #{departureTime}, #{productPrice}, #{productDesc}, #{productStatus})
+        <selectKey keyProperty="id" order="BEFORE" resultType="java.lang.String">
+            select replace(uuid(), '-', '') as id from dual
+        </selectKey>
+        insert into ssm.product(id, product_num, product_name, city_name, departure_time, product_price, product_desc, product_status)
+        values (#{id}, #{productNum}, #{productName}, #{cityName}, #{departureTime}, #{productPrice}, #{productDesc}, #{productStatus})
     </insert>
 
     <!--通过主键修改数据-->

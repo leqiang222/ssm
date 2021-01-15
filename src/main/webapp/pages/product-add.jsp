@@ -15,7 +15,6 @@
 	content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
 	name="viewport">
 
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/plugins/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet"
@@ -75,7 +74,6 @@
 
 		<!-- 内容区域 -->
 		<div class="content-wrapper">
-
 			<!-- 内容头部 -->
 			<section class="content-header">
 			<h1>
@@ -90,7 +88,6 @@
 			</ol>
 			</section>
 			<!-- 内容头部 /-->
-
 			<form action="${pageContext.request.contextPath}/product/save.do"
 				method="post">
 				<!-- 正文区域 -->
@@ -169,7 +166,7 @@
 			<b>Version</b> 1.0.8
 		</div>
 		<strong>Copyright &copy; 2014-2017 <a
-			href="http://www.itcast.cn">研究院研发部</a>.
+			href="http://www.qq.com">研究院研发部</a>.
 		</strong> All rights reserved. </footer>
 		<!-- 底部导航 /-->
 

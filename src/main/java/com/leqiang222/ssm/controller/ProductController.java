@@ -31,7 +31,7 @@ public class ProductController {
      * @return 单条数据
      */
     @GetMapping("/selectOne")
-    public Product selectOne(Long id) {
+    public Product selectOne(String id) {
         return this.productService.queryById(id);
     }
 
@@ -40,8 +40,8 @@ public class ProductController {
     public ModelAndView findAll() throws Exception {
         ModelAndView mv = new ModelAndView();
         List<Product> ps = productService.queryAll(null);
-        mv.addObject("productList", ps);
-        mv.setViewName("product-list1");
+        mv.addObject("att_productList", ps);
+        mv.setViewName("product-list");
         return mv;
     }
 
@@ -49,7 +49,7 @@ public class ProductController {
     @RequestMapping("/save.do")
     public String save(Product product) throws Exception {
         productService.insert(product);
-        return "redirect:findAll.do";
+        return "redirect:/product/findAll.do";
     }
 
 }

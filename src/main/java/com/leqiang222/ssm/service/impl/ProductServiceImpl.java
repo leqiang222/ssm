@@ -4,6 +4,7 @@ import com.leqiang222.ssm.entity.Product;
 import com.leqiang222.ssm.dao.ProductDao;
 import com.leqiang222.ssm.service.ProductService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.List;
  * @since 2020-04-05 14:39:36
  */
 @Service("productService")
+@Transactional
 public class ProductServiceImpl implements ProductService {
     @Resource
     private ProductDao productDao;
@@ -25,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
      * @param id 主键
      * @return 实例对象
      */
-    public Product queryById(Long id) {
+    public Product queryById(String id) {
         return this.productDao.queryById(id);
     }
 

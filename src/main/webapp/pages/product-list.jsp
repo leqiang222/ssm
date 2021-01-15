@@ -160,9 +160,7 @@
 		<!-- 内容区域 -->
 		<!-- @@master = admin-layout.html-->
 		<!-- @@block = content -->
-
 		<div class="content-wrapper">
-
 			<!-- 内容头部 -->
 			<section class="content-header">
 				<h1>
@@ -178,7 +176,6 @@
 
 			<!-- 正文区域 -->
 			<section class="content">
-
 				<!-- .box-body -->
 				<div class="box box-primary">
 					<div class="box-header with-border">
@@ -186,10 +183,8 @@
 					</div>
 
 					<div class="box-body">
-
 						<!-- 数据表格 -->
 						<div class="table-box">
-
 							<!--工具栏-->
 							<div class="pull-left">
 								<div class="form-group form-inline">
@@ -244,7 +239,7 @@
 								<tbody>
 
 
-									<c:forEach items="${productList}" var="product">
+									<c:forEach items="${att_productList}" var="product">
 
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
@@ -345,9 +340,6 @@
 
 					</div>
 					<!-- /.box-footer-->
-
-
-
 				</div>
 
 			</section>
@@ -363,7 +355,7 @@
 				<b>Version</b> 1.0.8
 			</div>
 			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.itcast.cn">研究院研发部</a>.
+				href="http://www.qq.com">研究院研发部</a>.
 			</strong> All rights reserved.
 		</footer>
 		<!-- 底部导航 /-->

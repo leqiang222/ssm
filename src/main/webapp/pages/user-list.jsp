@@ -178,7 +178,7 @@
 								<select class="form-control">
 									<option>5</option>
 									<option>10</option>
-								</select> 条
+								</select> 条17 / 5 + 1
 							</div>
 						</div>
 
@@ -186,8 +186,8 @@
 							<ul class="pagination">
 								<li><a href="#" aria-label="Previous">首页</a></li>
 								<li><a href="#">上一页</a></li>
-								<c:forEach var="i" begin="1" end="${att_userCount} / 5 + 1">
-									<li><a href="#">i</a></li>
+								<c:forEach var="i" begin="1" end="${att_userCount}">
+									<li><a href="#">${i}</a></li>
 								</c:forEach>
 								<li><a href="#">下一页</a></li>
 								<li><a href="#" aria-label="Next">尾页</a></li>
@@ -212,7 +212,7 @@
 				<b>Version</b> 1.0.8
 			</div>
 			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.itcast.cn">研究院研发部</a>.
+				href="http://www.qq.com">研究院研发部</a>.
 			</strong> All rights reserved. </footer>
 			<!-- 底部导航 /-->
 

@@ -21,7 +21,7 @@ public interface ProductDao {
      * @param id 主键
      * @return 实例对象
      */
-    Product queryById(Long id);
+    Product queryById(String id);
 
     /**
      * 查询指定行数据

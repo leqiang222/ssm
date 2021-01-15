@@ -17,7 +17,7 @@ public interface ProductService {
      * @param id 主键
      * @return 实例对象
      */
-    Product queryById(Long id);
+    Product queryById(String id);
 
     /**
      * 查询多条数据
