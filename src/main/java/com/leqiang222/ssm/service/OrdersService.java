@@ -1,6 +1,8 @@
 package com.leqiang222.ssm.service;
 
 import com.leqiang222.ssm.entity.Orders;
+import org.apache.ibatis.annotations.Select;
+
 import java.util.List;
 
 /**
@@ -17,7 +19,7 @@ public interface OrdersService {
      * @param id 主键
      * @return 实例对象
      */
-    Orders queryById(Long id);
+    Orders queryById(String id);
 
     /**
      * 查询多条数据
@@ -27,6 +29,13 @@ public interface OrdersService {
      * @return 对象列表
      */
     List<Orders> queryAllByLimit(int offset, int limit);
+
+    /**
+     * @Description: 查询order个数
+     * @Param:
+     * @Author-Date: leqiang222 2021/1/17 10:48 下午
+     */
+    Integer queryOrdersCount();
 
     /**
      * 新增数据
@@ -50,6 +59,6 @@ public interface OrdersService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(Long id);
+    boolean deleteById(String id);
 
 }

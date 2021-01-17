@@ -109,3 +109,39 @@ insert into PRODUCT (id, productnum, productname, cityname, departuretime, produ
 values ('12B7ABF2A4C544568B0A7C69F36BF8B7', 'itcast-003', '上海五日游', '上海', 1610723775, 1800, '魔都我来了', 0);
 insert into PRODUCT (id, productnum, productname, cityname, departuretime, productprice, productdesc, productstatus)
 values ('9F71F01CB448476DAFB309AA6DF9497F', 'itcast-001', '北京三日游', '北京', 1610723775, 1200, '不错的旅行', 1);
+
+-- ---------------------------------- 
+-- orders表 
+-- ---------------------------------- 
+DROP TABLE IF EXISTS `orders`;
+CREATE TABLE orders(
+  id VARCHAR(32) NOT NULL UNIQUE,
+  order_num VARCHAR(20) NOT NULL UNIQUE,
+  order_time datetime,
+  people_count INT,
+  order_desc VARCHAR(500),
+  pay_type INT,
+  order_status INT,
+  product_id varchar(32),
+  user_id INT,
+  FOREIGN KEY (product_id) REFERENCES product(id),
+  FOREIGN KEY (user_id) REFERENCES user(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into orders (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('5DC6A48DD4E94592AE904930EA866AFA', '54321', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '1');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('2FF351C4AC744E2092DCF08CFD314420', '67890', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '1');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('A0657832D93E4B10AE88A2D4B70B1A28', '98765', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '2');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('E4DD4C45EED84870ABA83574A801083E', '11111', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '2');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('96CC8BD43C734CC2ACBFF09501B4DD5D', '22222', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '3');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('55F9AF582D5A4DB28FB4EC3199385762', '33333', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '4');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('CA005CF1BE3C4EF68F88ABC7DF30E976', '44444', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '5');
+insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+values ('3081770BC3984EF092D9E99760FDABDE', '55555', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '6');
+
+

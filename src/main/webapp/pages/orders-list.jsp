@@ -364,7 +364,7 @@
 				<b>Version</b> 1.0.8
 			</div>
 			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.qq.com">研究院研发部</a>.
+				href="http://www.leqiang222.com">研究院研发部</a>.
 			</strong> All rights reserved.
 		</footer>
 		<!-- 底部导航 /-->

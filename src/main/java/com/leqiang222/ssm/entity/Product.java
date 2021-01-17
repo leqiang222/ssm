@@ -28,7 +28,7 @@ public class Product implements Serializable {
     
     private String cityName;
 
-    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date departureTime;
     
     private Double productPrice;

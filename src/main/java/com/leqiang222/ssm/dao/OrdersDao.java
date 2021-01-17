@@ -2,6 +2,7 @@ package com.leqiang222.ssm.dao;
 
 import com.leqiang222.ssm.entity.Orders;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,7 +22,7 @@ public interface OrdersDao {
      * @param id 主键
      * @return 实例对象
      */
-    Orders queryById(Long id);
+    Orders queryById(String id);
 
     /**
      * 查询指定行数据
@@ -31,6 +32,14 @@ public interface OrdersDao {
      * @return 对象列表
      */
     List<Orders> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+
+    /**
+     * @Description: 查询order个数
+     * @Param:
+     * @Author-Date: leqiang222 2021/1/17 10:48 下午
+     */
+    @Select("select COUNT(*) FROM orders")
+    Integer queryOrdersCount();
 
 
     /**
@@ -63,6 +72,6 @@ public interface OrdersDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(Long id);
+    int deleteById(String id);
 
 }

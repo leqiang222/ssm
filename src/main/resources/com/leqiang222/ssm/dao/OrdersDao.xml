@@ -3,17 +3,17 @@
 <mapper namespace="com.leqiang222.ssm.dao.OrdersDao">
 
     <resultMap type="com.leqiang222.ssm.entity.Orders" id="OrdersMap">
-        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="orderNum" column="order_num" jdbcType="VARCHAR"/>
         <result property="orderTime" column="order_time" jdbcType="TIMESTAMP"/>
         <result property="peopleCount" column="people_count" jdbcType="INTEGER"/>
         <result property="orderDesc" column="order_desc" jdbcType="VARCHAR"/>
         <result property="payType" column="pay_type" jdbcType="INTEGER"/>
         <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
-        <result property="productId" column="product_id" jdbcType="INTEGER"/>
-        <result property="memberId" column="member_id" jdbcType="INTEGER"/>
+        <result property="productId" column="product_id" jdbcType="VARCHAR"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <association property="product" column="product_id" javaType="com.leqiang222.ssm.entity.Product">
-            <id property="id" column="id" jdbcType="INTEGER"/>
+            <id property="id" column="id" jdbcType="VARCHAR"/>
             <result property="productNum" column="product_num" jdbcType="VARCHAR"/>
             <result property="productName" column="product_name" jdbcType="VARCHAR"/>
             <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
@@ -27,7 +27,7 @@
     <!--查询单个-->
     <select id="queryById" resultMap="OrdersMap">
         select
-          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id
+          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id
         from ssm.orders
         where id = #{id}
     </select>
@@ -41,7 +41,7 @@
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrdersMap">
         select
-          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id
+          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id
         from ssm.orders
         <where>
             <if test="id != null">
@@ -68,16 +68,16 @@
             <if test="productId != null">
                 and product_id = #{productId}
             </if>
-            <if test="memberId != null">
-                and member_id = #{memberId}
+            <if test="userId != null">
+                and user_id = #{userId}
             </if>
         </where>
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ssm.orders(order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, member_id)
-        values (#{orderNum}, #{orderTime}, #{peopleCount}, #{orderDesc}, #{payType}, #{orderStatus}, #{productId}, #{memberId})
+        insert into ssm.orders(order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
+        values (#{orderNum}, #{orderTime}, #{peopleCount}, #{orderDesc}, #{payType}, #{orderStatus}, #{productId}, #{userId})
     </insert>
 
     <!--通过主键修改数据-->
@@ -105,8 +105,8 @@
             <if test="productId != null">
                 product_id = #{productId},
             </if>
-            <if test="memberId != null">
-                member_id = #{memberId},
+            <if test="userId != null">
+                user_id = #{userId},
             </if>
         </set>
         where id = #{id}

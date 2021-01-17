@@ -25,7 +25,7 @@ public class OrdersServiceImpl implements OrdersService {
      * @param id 主键
      * @return 实例对象
      */
-    public Orders queryById(Long id) {
+    public Orders queryById(String id) {
         return this.ordersDao.queryById(id);
     }
 
@@ -38,6 +38,10 @@ public class OrdersServiceImpl implements OrdersService {
      */
     public List<Orders> queryAllByLimit(int offset, int limit) {
         return this.ordersDao.queryAllByLimit(offset, limit);
+    }
+
+    public Integer queryOrdersCount() {
+        return this.ordersDao.queryOrdersCount();
     }
 
     /**
@@ -68,7 +72,7 @@ public class OrdersServiceImpl implements OrdersService {
      * @param id 主键
      * @return 是否成功
      */
-    public boolean deleteById(Long id) {
+    public boolean deleteById(String id) {
         return this.ordersDao.deleteById(id) > 0;
     }
 }

@@ -32,31 +32,39 @@ public class OrdersController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Orders selectOne(Long id) {
+    public Orders selectOne(String id) {
         return this.ordersService.queryById(id);
     }
 
     @RequestMapping("/findAll.do")
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
-                                @RequestParam(name = "size", required = true, defaultValue = "4") Integer size)
+                                @RequestParam(name = "size", required = true, defaultValue = "5") Integer size)
             throws Exception {
-        ModelAndView mv = new ModelAndView();
+
         List<Orders> ordersList = ordersService.queryAllByLimit((page - 1) * size, size);
-        System.out.println(ordersList);
+        Integer total = ordersService.queryOrdersCount();
+
+        ModelAndView mv = new ModelAndView();
+
         //PageInfo就是一个分页Bean
         PageInfo pageInfo = new PageInfo(ordersList);
-        pageInfo.setPageSize(size);
-        pageInfo.setPageNum(page);
-        mv.addObject("pageInfo", pageInfo);
+        pageInfo.setPageSize(size); // 一页个数
+        pageInfo.setPageNum(page); // 第几页
+        pageInfo.setTotal(total); // 总个数
+        Integer pages = total % size == 0? total / size: total / size + 1;
+        pageInfo.setPages(pages); // 总页数
+
+        mv.addObject("att_pageInfo", pageInfo);
         mv.setViewName("orders-page-list");
+
         return mv;
     }
 
     @RequestMapping("/findById.do")
     public ModelAndView findById(@RequestParam(name = "id", required = true) String ordersId) throws Exception {
         ModelAndView mv = new ModelAndView();
-        Orders orders = ordersService.queryById(Long.valueOf(ordersId));
-        mv.addObject("orders",orders);
+        Orders orders = ordersService.queryById(ordersId);
+        mv.addObject("att_orders",orders);
         mv.setViewName("orders-show");
         return mv;
     }
