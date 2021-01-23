@@ -95,44 +95,9 @@
 
         <!-- 正文区域 -->
         <section class="content">
-			<!--游客信息-->
-			<div class="panel panel-default">
-				<div class="panel-heading">游客信息</div>
-				<!--数据列表-->
-				<table id="dataList" class="table table-bordered table-striped table-hover dataTable">
-					<thead>
-					<tr>
-						<th class="">人群</th>
-						<th class="">姓名</th>
-						<th class="">性别</th>
-						<th class="">手机号码</th>
-						<th class="">证件类型</th>
-						<th class="">证件号码</th>
-					</tr>
-					</thead>
-					<tbody>
-					<c:forEach var="traveller" items="${att_orders.travellers}">
-						<tr>
-							<td>${traveller.travellerTypeStr}</td>
-							<td><input type="text" size="10" value="${traveller.name }"
-									   readonly="readonly"></td>
-							<td><input type="text" size="10" value="${traveller.sex }"
-									   readonly="readonly"></td>
-							<td><input type="text" size="20"
-									   value="${traveller.phoneNum }" readonly="readonly"></td>
-							<td><input type="text" size="15"
-									   value="${traveller.credentialsTypeStr}" readonly="readonly"></td>
-							<td><input type="text" size="28"
-									   value="${traveller.credentialsNum }" readonly="readonly"></td>
-						</tr>
-					</c:forEach>
-					</tbody>
-				</table>
-				<!--数据列表/-->
-			</div>
 			<!--订单信息-->
 			<div class="panel panel-default">
-				<div class="panel-heading">订单信息1</div>
+				<div class="panel-heading">订单信息</div>
 				<div class="row data-type">
 					<div class="col-md-2 title">订单编号</div>
 					<div class="col-md-4 data">
@@ -183,16 +148,46 @@
 
 					<div class="col-md-2 title rowHeight2x">其他信息</div>
 					<div class="col-md-10 data rowHeight2x">
-						<textarea class="form-control" rows="3" placeholder="其他信息">
-							${att_orders.orderDesc }
+						<textarea class="form-control" rows="3" placeholder="其他信息">${att_orders.orderDesc }
 						</textarea>
 					</div>
 
 				</div>
 			</div>
-			<%-- 测试信息 --%>
+			<!--游客信息-->
 			<div class="panel panel-default">
-				<p>asdasdasdas</p>
+				<div class="panel-heading">游客信息</div>
+				<!--数据列表-->
+				<table id="dataList" class="table table-bordered table-striped table-hover dataTable">
+					<thead>
+					<tr>
+						<th class="">人群</th>
+						<th class="">姓名</th>
+						<th class="">性别</th>
+						<th class="">手机号码</th>
+						<th class="">证件类型</th>
+						<th class="">证件号码</th>
+					</tr>
+					</thead>
+					<tbody>
+					<c:forEach var="traveller" items="${att_orders.travellers}">
+						<tr>
+							<td>${traveller.travellerTypeStr}</td>
+							<td><input type="text" size="10" value="${traveller.name }"
+									   readonly="readonly"></td>
+							<td><input type="text" size="10" value="${traveller.sex }"
+									   readonly="readonly"></td>
+							<td><input type="text" size="20"
+									   value="${traveller.phoneNum }" readonly="readonly"></td>
+							<td><input type="text" size="15"
+									   value="${traveller.credentialsTypeStr}" readonly="readonly"></td>
+							<td><input type="text" size="28"
+									   value="${traveller.credentialsNum }" readonly="readonly"></td>
+						</tr>
+					</c:forEach>
+					</tbody>
+				</table>
+				<!--数据列表/-->
 			</div>
 			<!--联系人信息-->
             <div class="panel panel-default">
@@ -214,20 +209,18 @@
                 </div>
             </div>
 			<!--费用信息/-->
-			<c:if test="${att_orders.orderStatus==1}">
-                <div class="panel panel-default">
-                    <div class="panel-heading">费用信息</div>
-                    <div class="row data-type">
+			<c:if test="${att_orders.orderStatus == 1}">
+				                <div class="panel panel-default">
+				                    <div class="panel-heading">费用信息</div>
+				                    <div class="row data-type">
+				                        <div class="col-md-2 title">支付方式</div>
+				                        <div class="col-md-4 data text">${att_orders.payTypeStr}</div>
+				                        <div class="col-md-2 title">金额</div>
+				                        <div class="col-md-4 data text">￥${att_orders.product.productPrice}</div>
+				                    </div>
+				                </div>
+			</c:if>
 
-                        <div class="col-md-2 title">支付方式</div>
-                        <div class="col-md-4 data text">在线支付-${att_orders.payTypeStr}</div>
-
-                        <div class="col-md-2 title">金额</div>
-                        <div class="col-md-4 data text">￥${att_orders.product.productPrice}</div>
-
-                    </div>
-                </div>
-            </c:if>
 			<!--工具栏-->
             <div class="box-tools text-center">
                 <button type="button" class="btn bg-default"
@@ -247,10 +240,11 @@
         <strong>Copyright &copy; 2014-2017 <a
                 href="http://www.leqiang222.com">研究院研发部</a>.
         </strong> All rights reserved.
+		<div>
+			<p>data: ${att_json}</p>
+		</div>
     </footer>
-    <div>
-        <p>data: ${att_json}</p>
-    </div>
+
 </div>
 
 

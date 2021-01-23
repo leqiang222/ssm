@@ -5,7 +5,7 @@
     <resultMap type="com.leqiang222.ssm.entity.Member" id="MemberMap">
         <result property="id" column="id" jdbcType="VARCHAR"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
-        <result property="nickname" column="phoneNum" jdbcType="VARCHAR"/>
+        <result property="nickname" column="nickname" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
     </resultMap>
