@@ -118,12 +118,12 @@ CREATE TABLE orders(
   id VARCHAR(32) NOT NULL UNIQUE,
   order_num VARCHAR(20) NOT NULL UNIQUE,
   order_time datetime,
-  people_count INT,
+  people_count INTEGER,
   order_desc VARCHAR(500),
-  pay_type INT,
-  order_status INT,
+  pay_type INTEGER,
+  order_status INTEGER,
   product_id varchar(32),
-  user_id INT,
+  user_id INTEGER,
   FOREIGN KEY (product_id) REFERENCES product(id),
   FOREIGN KEY (user_id) REFERENCES user(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -143,5 +143,72 @@ insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_typ
 values ('CA005CF1BE3C4EF68F88ABC7DF30E976', '44444', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '5');
 insert into ORDERS (id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id)
 values ('3081770BC3984EF092D9E99760FDABDE', '55555', '2021-01-19 13:50:00', 2, '没什么', 0, 1, '12B7ABF2A4C544568B0A7C69F36BF8B7', '6');
+
+
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE member(
+  id VARCHAR(32) NOT NULL UNIQUE, 
+  name VARCHAR(50) NOT NULL,
+  nickname VARCHAR(50),
+  phoneNum VARCHAR(50),
+  email VARCHAR(50),
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into member (id, name, nickname, phoneNum, email)
+values ('MM676C5BD1D35E429A8C2E114939C568', '张三01', '哈哈哈01', '1610723775', 'leqiang222@1221.com');
+insert into member (id, name, nickname, phoneNum, email)
+values ('MM776C5BD1D35E429A8C2E114939C568', '张三02', '哈哈哈02', '1610723776', 'leqiang222@1222.com');
+insert into member (id, name, nickname, phoneNum, email)
+values ('MM876C5BD1D35E429A8C2E114939C568', '张三03', '哈哈哈03', '1610723777', 'leqiang222@1223.com');
+insert into member (id, name, nickname, phoneNum, email)
+values ('MM976C5BD1D35E429A8C2E114939C568', '张三04', '哈哈哈04', '1610723778', 'leqiang222@1224.com');
+insert into member (id, name, nickname, phoneNum, email)
+values ('MM706C5BD1D35E429A8C2E114939C568', '张三05', '哈哈哈05', '1610723779', 'leqiang222@1225.com');
+
+
+-- 旅客 
+DROP TABLE IF EXISTS `traveller`;
+CREATE TABLE traveller(
+  id VARCHAR(32) NOT NULL UNIQUE, 
+  name varchar(20),
+  sex varchar(20),
+  phone_num varchar(20),
+  credentials_type INTEGER,
+  credentials_num varchar(50),
+  traveller_type INTEGER
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+insert into traveller (id, name, sex, phone_num, credentials_type, credentials_num, traveller_type)
+values ('3FE27DF2A4E44A6DBC5D0FE4651D3D3E', '张龙', '男', '13333333333', 0, '123456789009876543', 0);
+insert into traveller (id, name, sex, phone_num, credentials_type, credentials_num, traveller_type)
+values ('EE7A71FB6945483FBF91543DBE851960', '张小龙', '男', '15555555555', 0, '987654321123456789', 1);
+
+
+-- 订单与旅客中间表 
+DROP TABLE IF EXISTS `order_traveller`;
+CREATE TABLE order_traveller(
+  order_id varchar(32) NOT NULL,
+  traveller_id varchar(32) NOT NULL,
+  PRIMARY KEY (order_id, traveller_id),
+  FOREIGN KEY (order_id) REFERENCES orders(id),
+  FOREIGN KEY (traveller_id) REFERENCES traveller(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+insert into order_traveller (order_id, traveller_id)
+values ('5DC6A48DD4E94592AE904930EA866AFA', '3FE27DF2A4E44A6DBC5D0FE4651D3D3E');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('5DC6A48DD4E94592AE904930EA866AFA', 'EE7A71FB6945483FBF91543DBE851960');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('2FF351C4AC744E2092DCF08CFD314420', '3FE27DF2A4E44A6DBC5D0FE4651D3D3E');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('2FF351C4AC744E2092DCF08CFD314420', 'EE7A71FB6945483FBF91543DBE851960');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('A0657832D93E4B10AE88A2D4B70B1A28', '3FE27DF2A4E44A6DBC5D0FE4651D3D3E');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('A0657832D93E4B10AE88A2D4B70B1A28', 'EE7A71FB6945483FBF91543DBE851960');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('E4DD4C45EED84870ABA83574A801083E', '3FE27DF2A4E44A6DBC5D0FE4651D3D3E');
+insert into ORDER_TRAVELLER (order_id, traveller_id)
+values ('96CC8BD43C734CC2ACBFF09501B4DD5D', 'EE7A71FB6945483FBF91543DBE851960'); 
 
 

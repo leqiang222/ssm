@@ -1,5 +1,8 @@
 package com.leqiang222.ssm.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.github.pagehelper.PageInfo;
 import com.leqiang222.ssm.entity.Orders;
 import com.leqiang222.ssm.service.OrdersService;
@@ -33,7 +36,9 @@ public class OrdersController {
      */
     @GetMapping("selectOne")
     public Orders selectOne(String id) {
-        return this.ordersService.queryById(id);
+        Orders order = this.ordersService.queryById(id);
+
+        return order;
     }
 
     @RequestMapping("/findAll.do")
@@ -55,6 +60,7 @@ public class OrdersController {
         pageInfo.setPages(pages); // 总页数
 
         mv.addObject("att_pageInfo", pageInfo);
+        mv.addObject("att_json", JSON.toJSONString(ordersList));
         mv.setViewName("orders-page-list");
 
         return mv;
@@ -65,6 +71,7 @@ public class OrdersController {
         ModelAndView mv = new ModelAndView();
         Orders orders = ordersService.queryById(ordersId);
         mv.addObject("att_orders",orders);
+        mv.addObject("att_json", JSON.toJSONString(orders));
         mv.setViewName("orders-show");
         return mv;
     }

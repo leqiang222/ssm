@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.leqiang222.ssm.dao.TravellerDao">
+
+    <resultMap type="com.leqiang222.ssm.entity.Traveller" id="TravellerMap">
+        <result property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="sex" column="sex" jdbcType="VARCHAR"/>
+        <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
+        <result property="credentialsType" column="credentials_type" jdbcType="INTEGER"/>
+        <result property="credentialsNum" column="credentials_num" jdbcType="VARCHAR"/>
+        <result property="travellerType" column="traveller_type" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="TravellerMap">
+        select *
+        from ssm.member
+        where id = #{id}
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>

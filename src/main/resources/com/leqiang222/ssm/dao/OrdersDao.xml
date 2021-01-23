@@ -12,31 +12,60 @@
         <result property="orderStatus" column="order_status" jdbcType="INTEGER"/>
         <result property="productId" column="product_id" jdbcType="VARCHAR"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
-        <association property="product" column="product_id" javaType="com.leqiang222.ssm.entity.Product">
-            <id property="id" column="id" jdbcType="VARCHAR"/>
-            <result property="productNum" column="product_num" jdbcType="VARCHAR"/>
-            <result property="productName" column="product_name" jdbcType="VARCHAR"/>
-            <result property="cityName" column="city_name" jdbcType="VARCHAR"/>
-            <result property="departureTime" column="departure_time" jdbcType="TIMESTAMP"/>
-            <result property="productPrice" column="product_price" jdbcType="NUMERIC"/>
-            <result property="productDesc" column="product_desc" jdbcType="VARCHAR"/>
-            <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap type="com.leqiang222.ssm.entity.Orders" id="OrdersMap_product" extends="OrdersMap">
+        <association property="product" column="product_id" select="com.leqiang222.ssm.dao.ProductDao.queryById"
+                     javaType="com.leqiang222.ssm.entity.Product">
         </association>
     </resultMap>
 
+    <resultMap type="com.leqiang222.ssm.entity.Orders" id="OrdersMap_product_member_travellers" extends="OrdersMap_product">
+        <association property="member" column="member_id" select="com.leqiang222.ssm.dao.MemberDao.queryById"
+                     javaType="com.leqiang222.ssm.entity.Member">
+        </association>
+
+        <collection property="travellers" column="id" select="selectTravellers">
+        </collection>
+    </resultMap>
+
+    <!--  根据订单id，查询关联travellers表  -->
+    <select id="selectTravellers" resultMap="com.leqiang222.ssm.dao.TravellerDao.TravellerMap">
+        select * from traveller where id in
+                                      (select traveller_id from order_traveller where order_id = #{id})
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="OrdersMap_product">
+        select * from orders limit #{offset}, #{limit}
+    </select>
+
     <!--查询单个-->
-    <select id="queryById" resultMap="OrdersMap">
-        select
-          id, order_num, order_time, people_count, order_desc, pay_type, order_status, product_id, user_id
+    <select id="queryById" resultMap="OrdersMap_product_member_travellers">
+        select *
         from ssm.orders
         where id = #{id}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="OrdersMap">
-         select orders.*, product.* from orders , product where orders.product_id = product.id
-        limit #{offset}, #{limit}
-    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="OrdersMap">

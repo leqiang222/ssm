@@ -10,11 +10,19 @@ import java.util.List;
 /**
  * (Orders)表数据库访问层
  *
- * @author makejava
+ * @author makejavaqueryById
  * @since 2020-04-05 15:02:23
  */
 @Repository(value = "ordersDao")
 public interface OrdersDao {
+    /**
+     * 查询指定行数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    List<Orders> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
 
     /**
      * 通过ID查询单条数据
@@ -24,14 +32,7 @@ public interface OrdersDao {
      */
     Orders queryById(String id);
 
-    /**
-     * 查询指定行数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    List<Orders> queryAllByLimit(@Param("offset") int offset, @Param("limit") int limit);
+
 
     /**
      * @Description: 查询order个数

@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import java.util.Date;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Orders)实体类
@@ -33,10 +34,14 @@ public class Orders implements Serializable {
     private Integer orderStatus;
     
     private String productId;
-    
+
     private Long userId;
 
     private Product product;
+
+    private Member member;
+
+    private List<Traveller> travellers;
 
     // MARK
     private String orderTimeStr;
