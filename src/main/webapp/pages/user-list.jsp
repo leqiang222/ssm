@@ -138,7 +138,7 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${att_userList}" var="user">
+									<c:forEach items="${att_pageInfo.list}" var="user">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${user.id }</td>
@@ -174,23 +174,29 @@
 					<div class="box-footer">
 						<div class="pull-left">
 							<div class="form-group form-inline">
-								总共 x 页，共 ${att_userCount} 条数据。 每页
-								<select class="form-control">
-									<option>5</option>
-									<option>10</option>
-								</select> 条17 / 5 + 1
+								总共 ${att_pageInfo.pages} 页，共 ${att_pageInfo.total} 条数据。 每页
+								<select class="form-control" id="changePageSize" onchange="changePageSize()">
+									<option <c:if test="${att_pageInfo.pageSize == 5}">selected="selected"</c:if>>5</option>
+									<option <c:if test="${att_pageInfo.pageSize == 10}">selected="selected"</c:if>>10</option>
+									<option <c:if test="${att_pageInfo.pageSize == 20}">selected="selected"</c:if>>20</option>
+									<option <c:if test="${att_pageInfo.pageSize == 50}">selected="selected"</c:if>>50</option>
+								</select> 条
 							</div>
 						</div>
 
 						<div class="box-tools pull-right">
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous">首页</a></li>
-								<li><a href="#">上一页</a></li>
-								<c:forEach var="i" begin="1" end="${att_userCount}">
-									<li><a href="#">${i}</a></li>
+								<li>
+									<a href="${pageContext.request.contextPath}/user/findAll.do?page=1&size=${att_pageInfo.pageSize}" aria-label="Previous">首页</a>
+								</li>
+								<li><a href="${pageContext.request.contextPath}/user/findAll.do?page=${att_pageInfo.pageNum-1}&size=${att_pageInfo.pageSize}">上一页</a></li>
+								<c:forEach begin="1" end="${att_pageInfo.pages}" var="pageNum">
+									<li><a href="${pageContext.request.contextPath}/user/findAll.do?page=${pageNum}&size=${att_pageInfo.pageSize}">${pageNum}</a></li>
 								</c:forEach>
-								<li><a href="#">下一页</a></li>
-								<li><a href="#" aria-label="Next">尾页</a></li>
+								<li><a href="${pageContext.request.contextPath}/user/findAll.do?page=${att_pageInfo.pageNum+1}&size=${att_pageInfo.pageSize}">下一页</a></li>
+								<li>
+									<a href="${pageContext.request.contextPath}/user/findAll.do?page=${att_pageInfo.pages}&size=${att_pageInfo.pageSize}" aria-label="Next">尾页</a>
+								</li>
 							</ul>
 						</div>
 
@@ -212,8 +218,13 @@
 				<b>Version</b> 1.0.8
 			</div>
 			<strong>Copyright &copy; 2014-2017 <a
-				href="http://www.leqiang222.com">研究院研发部</a>.
-			</strong> All rights reserved. </footer>
+				href="http://www.leqiang222.com">研究院研发部2</a>.
+			</strong> All rights reserved.
+				<div>
+					<p>data: ${att_json}</p>
+				</div>
+			</footer>
+
 			<!-- 底部导航 /-->
 
 		</div>
@@ -267,6 +278,14 @@
 		<script src="../plugins/ionslider/ion.rangeSlider.min.js"></script>
 		<script src="../plugins/bootstrap-slider/bootstrap-slider.js"></script>
 		<script>
+			function changePageSize() {
+				//获取下拉框的值
+				var pageSize = $("#changePageSize").val();
+
+				//向服务器发送请求，改变没页显示条数
+				location.href = "${pageContext.request.contextPath}/user/findAll.do?page=1&size="
+						+ pageSize;
+			}
 			$(document).ready(function() {
 				// 选择框
 				$(".select2").select2();

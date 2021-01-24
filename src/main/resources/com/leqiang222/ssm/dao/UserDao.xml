@@ -9,20 +9,30 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="phoneNum" column="phone_num" jdbcType="VARCHAR"/>
         <result property="status" column="status" jdbcType="INTEGER"/>
-        <collection property="roles" ofType="com.leqiang222.ssm.entity.Role">
-            <id property="id" column="role_id"></id>
-            <result property="roleName" column="role_name"></result>
-            <result property="roleDesc" column="role_desc"></result>
+    </resultMap>
+    <resultMap  type="com.leqiang222.ssm.entity.User" id="UserMap-Role" extends="UserMap">
+        <collection property="roles" column="id" select="selectRoles">
+
         </collection>
     </resultMap>
 
-    <!--查询单个-->
-    <select id="queryById" resultMap="UserMap">
-        select *, role.id as role_id from user
-        left join users_role on user.id = users_role.user_id
-        left join role on users_role.role_id = role.id
-        where user.id = #{id}
+    <!-- 查询user下的所有role -->
+    <select id="selectRoles" resultMap="com.leqiang222.ssm.dao.RoleDao.RoleMap">
+        select * from role where id in
+                                      (select role_id from users_role where user_id = #{id})
     </select>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="UserMap-Role">
+        select * from user where id = #{id}
+    </select>
+
+<!--    <select id="queryById" resultMap="UserMap">-->
+<!--        select *, role.id as role_id from user-->
+<!--        left join users_role on user.id = users_role.user_id-->
+<!--        left join role on users_role.role_id = role.id-->
+<!--        where user.id = #{id}-->
+<!--    </select>-->
 
     <!--账号密码查询-->
     <select id="queryByUserNamePassword" parameterType="java.lang.String" resultMap="UserMap">
@@ -34,6 +44,11 @@
     </select>
 
     <!--查询指定行数据-->
+    <select id="queryAllWithPagehelp" resultMap="UserMap">
+        select * from user
+    </select>
+
+    <!--查询指定行数据-->
     <select id="queryAllByLimit" resultMap="UserMap">
         select *, role.id as role_id from user
         left outer join users_role on user.id = users_role.user_id
@@ -41,7 +56,6 @@
         <if test="limit != 0">
             limit #{offset}, #{limit}
         </if>
-
     </select>
 
     <!--通过实体作为筛选条件查询-->

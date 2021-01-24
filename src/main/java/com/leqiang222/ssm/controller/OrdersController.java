@@ -49,8 +49,6 @@ public class OrdersController {
         List<Orders> ordersList = ordersService.queryAllByLimit((page - 1) * size, size);
         Integer total = ordersService.queryOrdersCount();
 
-        ModelAndView mv = new ModelAndView();
-
         //PageInfo就是一个分页Bean
         PageInfo pageInfo = new PageInfo(ordersList);
         pageInfo.setPageSize(size); // 一页个数
@@ -59,6 +57,7 @@ public class OrdersController {
         Integer pages = total % size == 0? total / size: total / size + 1;
         pageInfo.setPages(pages); // 总页数
 
+        ModelAndView mv = new ModelAndView();
         mv.addObject("att_pageInfo", pageInfo);
         mv.addObject("att_json", JSON.toJSONString(ordersList));
         mv.setViewName("orders-page-list");

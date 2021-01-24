@@ -1,5 +1,6 @@
 package com.leqiang222.ssm.service.impl;
 
+import com.github.pagehelper.PageHelper;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.dao.UserDao;
 import com.leqiang222.ssm.service.UserService;
@@ -20,6 +21,22 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
+
+    /**
+     * 查询多条数据
+     *
+     * @param offset 查询起始位置
+     * @param limit 查询条数
+     * @return 对象列表
+     */
+    public List<User> queryAllByLimit(int offset, int limit) {
+        return this.userDao.queryAllByLimit(offset, limit);
+    }
+
+    public List<User> queryAll(Integer page, Integer size) {
+        PageHelper.startPage(page, size);
+        return this.userDao.queryAllWithPagehelp();
+    }
 
     /**
      * 通过ID查询单条数据
@@ -43,16 +60,7 @@ public class UserServiceImpl implements UserService {
         return this.userDao.queryUserCount();
     }
 
-    /**
-     * 查询多条数据
-     *
-     * @param offset 查询起始位置
-     * @param limit 查询条数
-     * @return 对象列表
-     */
-    public List<User> queryAllByLimit(int offset, int limit) {
-        return this.userDao.queryAllByLimit(offset, limit);
-    }
+
 
     /**
      * 新增数据

@@ -1,15 +1,14 @@
 package com.leqiang222.ssm.controller;
 
-import com.leqiang222.ssm.entity.Role;
+import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageInfo;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -24,17 +23,22 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public User selectOne(Long id) {
-        return this.userService.queryById(id);
-    }
+    @RequestMapping("/findAll.do")
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
+                                @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) throws Exception {
 
+
+        List<User> userList = userService.queryAll(page, size);
+
+        PageInfo pageInfo = new PageInfo(userList);
+
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("att_pageInfo", pageInfo);
+        mv.addObject("att_json", JSON.toJSONString(userList));
+        mv.setViewName("user-list");
+
+        return mv;
+    }
 
     /**
      * 查询指定id的用户
@@ -50,27 +54,45 @@ public class UserController {
 
         mv.addObject("user", userInfo);
         mv.setViewName("user-show1");
+        mv.addObject("att_json", JSON.toJSONString(userInfo));
         return mv;
     }
+
 
     /**
      * 查找所有用户
      * @return
      * @throws Exception
      */
-    @RequestMapping("/findAll.do")
-    public ModelAndView findAll() throws Exception {
+    @RequestMapping("/findAll2.do")
+    public ModelAndView findAll2(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
+                                @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) throws Exception {
+        List<User> userList = userService.queryAllByLimit((page - 1) * size,size);
+
+        PageInfo pageInfo = new PageInfo(userList);
+
         ModelAndView mv = new ModelAndView();
-
-        List<User> userList = userService.queryAllByLimit(0,0);
-        Integer count =  userService.queryUserCount();
-
-        mv.addObject("att_userList", userList);
-        mv.addObject("att_userCount", count);
+        mv.addObject("att_pageInfo", pageInfo);
+        mv.addObject("att_json", JSON.toJSONString(userList));
         mv.setViewName("user-list");
 
         return mv;
     }
+
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public User selectOne(Long id) {
+        return this.userService.queryById(id);
+    }
+
+
+
+
 
     /**
      * 查询用户以及用户可以添加的角色

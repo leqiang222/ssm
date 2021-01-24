@@ -24,7 +24,6 @@
         <association property="member" column="member_id" select="com.leqiang222.ssm.dao.MemberDao.queryById"
                      javaType="com.leqiang222.ssm.entity.Member">
         </association>
-
         <collection property="travellers" column="id" select="selectTravellers">
         </collection>
     </resultMap>

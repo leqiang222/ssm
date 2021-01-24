@@ -34,6 +34,13 @@ public interface UserDao {
     Integer queryUserCount();
 
     /**
+     * @Description: 查询指定行数据，service使用pagehelp插件，无需limit、offset
+     * @Author-Date: leqiang222 2021/1/24 11:04 下午
+     */
+
+    List<User> queryAllWithPagehelp();
+
+    /**
      * 查询指定行数据
      *
      * @param offset 查询起始位置

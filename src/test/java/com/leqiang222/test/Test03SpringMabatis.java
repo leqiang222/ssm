@@ -20,12 +20,12 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml"})
 public class Test03SpringMabatis {
-    @Autowired
-    private ProductDao productDao;
-    @Autowired
-    private OrdersDao ordersDao;
-    @Autowired
-    private UserDao userDao;
+//    @Autowired
+//    private ProductDao productDao;
+//    @Autowired
+//    private OrdersDao ordersDao;
+//    @Autowired
+//    private UserDao userDao;
 
     @Before
     public void before() {
@@ -43,8 +43,8 @@ public class Test03SpringMabatis {
 //        System.out.println(listProduct);
 //
 //
-        User user = userDao.queryById(1L);
-        System.out.println(user);
+//        User user = userDao.queryById(1L);
+//        System.out.println(user);
 
 //        Product product = new Product();
 //        product.setCityName("3");
