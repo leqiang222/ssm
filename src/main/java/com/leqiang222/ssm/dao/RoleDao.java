@@ -62,4 +62,5 @@ public interface RoleDao {
      */
     int deleteById(Long id);
 
+    List<Role> findAll();
 }

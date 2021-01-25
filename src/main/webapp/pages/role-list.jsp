@@ -143,7 +143,7 @@
 								</thead>
 								<tbody>
 
-									<c:forEach items="${roleList}" var="role">
+									<c:forEach items="${att_roleList}" var="role">
 										<tr>
 											<td><input name="ids" type="checkbox"></td>
 											<td>${role.id }</td>
@@ -223,7 +223,11 @@
 			</div>
 			<strong>Copyright &copy; 2014-2017 <a
 				href="http://www.leqiang222.com">研究院研发部</a>.
-			</strong> All rights reserved. </footer>
+			</strong> All rights reserved.
+				<div>
+					<p>data: ${att_json}</p>
+				</div>
+			</footer>
 			<!-- 底部导航 /-->
 
 		</div>

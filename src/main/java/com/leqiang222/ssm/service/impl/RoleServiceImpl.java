@@ -76,4 +76,8 @@ public class RoleServiceImpl implements RoleService {
     public boolean deleteById(Long id) {
         return this.roleDao.deleteById(id) > 0;
     }
+
+    public List<Role> findAll() {
+        return this.roleDao.findAll();
+    }
 }

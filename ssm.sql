@@ -15,77 +15,6 @@ Date: 2016-05-12 00:07:42
 
 SET FOREIGN_KEY_CHECKS=0;
 
--- ---------------------------------- 
--- user表 
--- ---------------------------------- 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '用户id',
-  `user_name` varchar(50) NOT NULL unique COMMENT '用户名',
-  `email` varchar(64) DEFAULT NULL COMMENT 'email',
-  `password` varchar(64) NOT NULL COMMENT 'password',
-  `phoneNum` varchar(10) DEFAULT NULL COMMENT 'phoneNum',
-  `status` int(1) DEFAULT 1 COMMENT '状态0 未开启 1 开启',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
- 
-INSERT INTO `user` VALUES (NULL, 'leqiang', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang1', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang2', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang3', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang4', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang5', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang6', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang7', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang8', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang9', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang10', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang11', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang12', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang13', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang14', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang15', NULL, '000', null, 1); 
-INSERT INTO `user` VALUES (NULL, 'leqiang16', NULL, '000', null, 1); 
-
-
--- ---------------------------------- 
--- role表 
--- ---------------------------------- 
-DROP TABLE IF EXISTS `role`;
-CREATE TABLE `role` (
-  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '角色id',
-  `role_name` varchar(50) NOT NULL unique COMMENT 'role_name',
-  `role_desc` varchar(255) DEFAULT NULL COMMENT 'role_desc', 
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-INSERT INTO `role` VALUES (NULL, '管理员', NULL); 
-INSERT INTO `role` VALUES (NULL, '财务', NULL); 
-INSERT INTO `role` VALUES (NULL, '运营', NULL); 
-INSERT INTO `role` VALUES (NULL, '总裁办', NULL); 
-
- 
--- ---------------------------------- 
--- users_role表 
--- ---------------------------------- 
-DROP TABLE IF EXISTS `users_role`;
-CREATE TABLE `users_role` (
-  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '用户角色-id',
-  `user_id` int NOT NULL COMMENT '用户id',
-  `role_id` int NOT NULL COMMENT '角色id', 
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
-
-INSERT INTO `users_role` VALUES (NULL, 1, 1); 
-INSERT INTO `users_role` VALUES (NULL, 1, 4); 
-INSERT INTO `users_role` VALUES (NULL, 2, 3); 
-INSERT INTO `users_role` VALUES (NULL, 3, 3); 
-INSERT INTO `users_role` VALUES (NULL, 4, 2);  
-
-
 
 -- ---------------------------------- 
 -- product表 
@@ -211,4 +140,104 @@ values ('E4DD4C45EED84870ABA83574A801083E', '3FE27DF2A4E44A6DBC5D0FE4651D3D3E');
 insert into ORDER_TRAVELLER (order_id, traveller_id)
 values ('96CC8BD43C734CC2ACBFF09501B4DD5D', 'EE7A71FB6945483FBF91543DBE851960'); 
 
+
+
+
+
+-- ---------------------------------- 
+-- user表 
+-- ---------------------------------- 
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user` (
+  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '用户id',
+  `user_name` varchar(50) NOT NULL unique COMMENT '用户名',
+  `email` varchar(64) DEFAULT NULL COMMENT 'email',
+  `password` varchar(64) NOT NULL COMMENT 'password',
+  `phoneNum` varchar(10) DEFAULT NULL COMMENT 'phoneNum',
+  `status` int(1) DEFAULT 1 COMMENT '状态0 未开启 1 开启',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+ 
+INSERT INTO `user` VALUES (NULL, 'leqiang', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang1', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang2', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang3', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang4', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang5', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang6', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang7', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang8', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang9', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang10', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang11', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang12', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang13', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang14', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang15', NULL, '000', null, 1); 
+INSERT INTO `user` VALUES (NULL, 'leqiang16', NULL, '000', null, 1); 
+
+
+-- ---------------------------------- 
+-- role表 
+-- ---------------------------------- 
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '角色id',
+  `role_name` varchar(50) NOT NULL unique COMMENT 'role_name',
+  `role_desc` varchar(255) DEFAULT NULL COMMENT 'role_desc', 
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `role` VALUES (NULL, '管理员', NULL); 
+INSERT INTO `role` VALUES (NULL, '财务', NULL); 
+INSERT INTO `role` VALUES (NULL, '运营', NULL); 
+INSERT INTO `role` VALUES (NULL, '总裁办', NULL); 
+
+ 
+-- ---------------------------------- 
+-- users_role表 
+-- ---------------------------------- 
+DROP TABLE IF EXISTS `users_role`;
+CREATE TABLE `users_role` (
+  `id` int NOT NULL unique AUTO_INCREMENT COMMENT '用户角色-id',
+  `user_id` int NOT NULL COMMENT '用户id',
+  `role_id` int NOT NULL COMMENT '角色id', 
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `users_role` VALUES (NULL, 1, 1); 
+INSERT INTO `users_role` VALUES (NULL, 1, 4); 
+INSERT INTO `users_role` VALUES (NULL, 2, 3); 
+INSERT INTO `users_role` VALUES (NULL, 3, 3); 
+INSERT INTO `users_role` VALUES (NULL, 4, 2);  
+
+
+
+ 
+-- ---------------------------------- 
+-- 资源权限表
+-- ---------------------------------- 
+DROP TABLE IF EXISTS `permission`;
+CREATE TABLE permission (
+  id VARCHAR(32) NOT NULL UNIQUE, 
+  permission_name VARCHAR(50) ,
+  url VARCHAR2(150),
+  PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- ---------------------------------- 
+-- 角色权限关联表
+-- ----------------------------------  
+DROP TABLE IF EXISTS `role_permission`;
+CREATE TABLE role_permission(
+permission_id varchar(32),
+role_id int,
+PRIMARY KEY(permission_id,role_id),
+FOREIGN KEY (permission_id) REFERENCES permission(id),
+FOREIGN KEY (role_id) REFERENCES role(id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

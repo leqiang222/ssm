@@ -52,4 +52,5 @@ public interface RoleService {
      */
     boolean deleteById(Long id);
 
+    List<Role> findAll();
 }

@@ -53,8 +53,8 @@ public class UserController {
         User userInfo = userService.queryById(Long.valueOf(id));
 
         mv.addObject("user", userInfo);
-        mv.setViewName("user-show1");
         mv.addObject("att_json", JSON.toJSONString(userInfo));
+        mv.setViewName("user-show");
         return mv;
     }
 

@@ -7,11 +7,21 @@
         <result property="roleName" column="role_name" jdbcType="VARCHAR"/>
         <result property="roleDesc" column="role_desc" jdbcType="VARCHAR"/>
     </resultMap>
+    <resultMap id="RoleMap-Permission" type="com.leqiang222.ssm.entity.Role" >
+        <collection property="permissions" column="id" select="selectPermissions">
+        </collection>
+    </resultMap>
+
+    <!-- 查询权限-->
+    <select id="selectPermissions" resultMap="com.leqiang222.ssm.dao.PermissionDao.PermissionMap">
+        select * from permission where id in
+                                       (select permission_id from role_permission where role_id = #{id} )
+    </select>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="RoleMap">
+    <select id="queryById" resultMap="RoleMap-Permission">
         select
-          id, role_name, role_desc
+          *
         from ssm.role
         where id = #{id}
     </select>
@@ -22,6 +32,11 @@
           id, role_name, role_desc
         from ssm.role
         limit #{offset}, #{limit}
+    </select>
+
+    <select id="findAll" resultMap="RoleMap">
+        select id, role_name, role_desc
+        from ssm.role
     </select>
 
     <!--通过实体作为筛选条件查询-->

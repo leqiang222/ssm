@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * (Role)实体类
@@ -21,4 +22,6 @@ public class Role implements Serializable {
     private String roleName;
     
     private String roleDesc;
+
+    private List<Permission> permissions;
 }

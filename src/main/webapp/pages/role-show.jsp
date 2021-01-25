@@ -139,11 +139,11 @@
                                 </tr>
                                 </thead>
                                 <tr data-tt-id="0">
-                                    <td colspan="2">${role.roleName}</td>
+                                    <td colspan="2">${att_role.roleName}</td>
                                 </tr>
 
                                 <tbody>
-                                <c:forEach items="${role.permissions}" var="permission" varStatus="vs1">
+                                <c:forEach items="${att_role.permissions}" var="permission" varStatus="vs1">
                                     <tr data-tt-id="${vs1.index+1}" data-tt-parent-id="0">
                                         <td>${permission.permissionName }</td>
                                         <td>${permission.url }</td>
@@ -207,6 +207,9 @@
         </div>
         <strong>Copyright &copy; 2014-2017 <a
                 href="http://www.leqiang222.com">研究院研发部</a>.
+            <div>
+                <p>data: ${att_json}</p>
+            </div>
         </strong> All rights reserved.
     </footer>
     <!-- 底部导航 /-->
