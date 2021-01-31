@@ -223,8 +223,8 @@ INSERT INTO `users_role` VALUES (NULL, 4, 2);
 DROP TABLE IF EXISTS `permission`;
 CREATE TABLE permission (
   id VARCHAR(32) NOT NULL UNIQUE, 
-  permission_name VARCHAR(50) ,
-  url VARCHAR2(150),
+  permission_name VARCHAR(50),
+  url VARCHAR(150),
   PRIMARY KEY (`id`)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

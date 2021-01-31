@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Traveller {
-    private String id;
+    private Integer id;
     private String name;
     private String sex;
     private String phoneNum;

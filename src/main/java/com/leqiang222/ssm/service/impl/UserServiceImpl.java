@@ -1,14 +1,19 @@
 package com.leqiang222.ssm.service.impl;
 
 import com.github.pagehelper.PageHelper;
+import com.leqiang222.ssm.entity.Role;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.dao.UserDao;
 import com.leqiang222.ssm.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,6 +26,8 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     @Resource
     private UserDao userDao;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     /**
      * 查询多条数据
@@ -99,17 +106,17 @@ public class UserServiceImpl implements UserService {
         userDao.addRoleToUser(userId, roleIds);
     }
 
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    /**
+     * @Description: Spring Security 实现获取用户信息
+     * @Param: 
+     * @Author-Date: leqiang222 2021/1/26 9:25 下午 
+     */
+     
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //
         User userInfo = null;
         try {
-            User user = new User();
-            user.setUserName(s);
-            List<User> list = userDao.queryAll(user);
-            if (list.size() == 1) {
-                userInfo = list.get(0);
-            }else {
-                userInfo = null;
-            }
+            userInfo = this.userDao.queryByUsername(username);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -118,7 +125,7 @@ public class UserServiceImpl implements UserService {
             return null;
         }
 
-        //处理自己的用户对象封装成UserDetails
+        // 处理自己的用户对象封装成UserDetails
         org.springframework.security.core.userdetails.User user =
                 new org.springframework.security.core.userdetails.User(userInfo.getUserName(),
                         userInfo.getPassword(),
@@ -126,8 +133,18 @@ public class UserServiceImpl implements UserService {
                         true,
                         true,
                         true,
-                        null);
+                        getAuthority(userInfo.getRoles()));
 
         return user;
+    }
+
+    //作用就是返回一个List集合，集合中装入的是角色描述
+    public List<SimpleGrantedAuthority> getAuthority(List<Role> roles) {
+
+        List<SimpleGrantedAuthority> list = new ArrayList<SimpleGrantedAuthority>();
+        for (Role role : roles) {
+            list.add(new SimpleGrantedAuthority(role.getRoleName()));
+        }
+        return list;
     }
 }

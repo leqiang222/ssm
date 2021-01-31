@@ -27,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
      * @param id 主键
      * @return 实例对象
      */
-    public Product queryById(String id) {
+    public Product queryById(Integer id) {
         return this.productDao.queryById(id);
     }
 

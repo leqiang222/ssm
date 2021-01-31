@@ -16,5 +16,5 @@ public interface MemberDao {
      * @param id 主键
      * @return 实例对象
      */
-    Orders queryById(String id);
+    Orders queryById(Integer id);
 }

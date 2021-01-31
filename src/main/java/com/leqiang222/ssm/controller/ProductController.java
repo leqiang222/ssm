@@ -31,7 +31,7 @@ public class ProductController {
      * @return 单条数据
      */
     @GetMapping("/selectOne")
-    public Product selectOne(String id) {
+    public Product selectOne(Integer id) {
         return this.productService.queryById(id);
     }
 

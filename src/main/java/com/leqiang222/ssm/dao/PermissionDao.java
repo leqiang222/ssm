@@ -8,5 +8,5 @@ import com.leqiang222.ssm.entity.Permission;
  * @Date: 2021/1/25$ 11:21 下午$
  */
 public interface PermissionDao {
-    Permission queryById(String id);
+    Permission queryById(Integer id);
 }

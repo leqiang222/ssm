@@ -11,8 +11,13 @@
 					class="img-circle" alt="User Image">
 			</div>
 			<div class="pull-left info">
-				<p>xxx</p>
-				<a href="#"><i class="fa fa-circle text-success"></i> 在线</a>
+				<p>1111</p>
+				<p>
+					dddd
+					${session.SPRING_SECURITY_CONTEXT.authentication.principal.username}
+					<security:authentication property="principal.username"></security:authentication>
+				</p>
+				<a href="#"><i class="fa fa-circle text-success"></i> 在线2</a>
 			</div>
 		</div>
 

@@ -35,7 +35,7 @@ public class OrdersController {
      * @return 单条数据
      */
     @GetMapping("selectOne")
-    public Orders selectOne(String id) {
+    public Orders selectOne(Integer id) {
         Orders order = this.ordersService.queryById(id);
 
         return order;
@@ -66,7 +66,7 @@ public class OrdersController {
     }
 
     @RequestMapping("/findById.do")
-    public ModelAndView findById(@RequestParam(name = "id", required = true) String ordersId) throws Exception {
+    public ModelAndView findById(@RequestParam(name = "id", required = true) Integer ordersId) throws Exception {
         ModelAndView mv = new ModelAndView();
         Orders orders = ordersService.queryById(ordersId);
         mv.addObject("att_orders",orders);

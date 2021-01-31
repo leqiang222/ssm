@@ -35,6 +35,11 @@
 <!--    </select>-->
 
     <!--账号密码查询-->
+    <select id="queryByUsername" parameterType="java.lang.String" resultMap="UserMap-Role">
+        SELECT * from `user` WHERE user_name = #{userName}
+    </select>
+
+    <!--账号密码查询-->
     <select id="queryByUserNamePassword" parameterType="java.lang.String" resultMap="UserMap">
         SELECT * from `user` WHERE user_name = #{userName} AND `password` = #{password}
     </select>

@@ -9,7 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Member {
-    private String id;
+    private Integer id;
     private String name;
     private String nickname;
     private String phoneNum;

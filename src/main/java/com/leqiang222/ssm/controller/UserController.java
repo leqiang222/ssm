@@ -47,7 +47,7 @@ public class UserController {
      * @throws Exception
      */
     @RequestMapping("/findById.do")
-    public ModelAndView findById(String id) throws Exception {
+    public ModelAndView findById(Integer id) throws Exception {
         ModelAndView mv = new ModelAndView();
 
         User userInfo = userService.queryById(Long.valueOf(id));

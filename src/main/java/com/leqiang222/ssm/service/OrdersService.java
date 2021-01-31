@@ -19,7 +19,7 @@ public interface OrdersService {
      * @param id 主键
      * @return 实例对象
      */
-    Orders queryById(String id);
+    Orders queryById(Integer id);
 
     /**
      * 查询多条数据
@@ -59,6 +59,6 @@ public interface OrdersService {
      * @param id 主键
      * @return 是否成功
      */
-    boolean deleteById(String id);
+    boolean deleteById(Integer id);
 
 }

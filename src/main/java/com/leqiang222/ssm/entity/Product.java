@@ -20,7 +20,7 @@ import java.io.Serializable;
 public class Product implements Serializable {
     private static final long serialVersionUID = -46566765393584295L;
     
-    private String id;
+    private Integer id;
     
     private String productNum;
     

@@ -25,7 +25,7 @@ public class OrdersServiceImpl implements OrdersService {
      * @param id 主键
      * @return 实例对象
      */
-    public Orders queryById(String id) {
+    public Orders queryById(Integer id) {
         return this.ordersDao.queryById(id);
     }
 
@@ -72,7 +72,7 @@ public class OrdersServiceImpl implements OrdersService {
      * @param id 主键
      * @return 是否成功
      */
-    public boolean deleteById(String id) {
+    public boolean deleteById(Integer id) {
         return this.ordersDao.deleteById(id) > 0;
     }
 }

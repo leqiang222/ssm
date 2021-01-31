@@ -30,7 +30,7 @@ public interface OrdersDao {
      * @param id 主键
      * @return 实例对象
      */
-    Orders queryById(String id);
+    Orders queryById(Integer id);
 
 
 
@@ -73,6 +73,6 @@ public interface OrdersDao {
      * @param id 主键
      * @return 影响行数
      */
-    int deleteById(String id);
+    int deleteById(Integer id);
 
 }

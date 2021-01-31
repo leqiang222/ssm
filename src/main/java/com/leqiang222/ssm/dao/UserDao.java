@@ -21,6 +21,8 @@ public interface UserDao {
      */
     User queryById(Long id);
 
+    User queryByUsername(String username);
+
     /**
      * @Description: 根据账号密码查询用户
      * @Author-Date: leqiang222 2021/1/13 9:26 下午

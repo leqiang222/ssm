@@ -13,7 +13,6 @@ import java.util.List;
  */
 public interface UserService extends UserDetailsService {
 
-
     List<User> queryAll(Integer page, Integer size);
 
     /**

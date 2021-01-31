@@ -19,7 +19,7 @@ import java.util.List;
 public class Orders implements Serializable {
     private static final long serialVersionUID = 746738294436250157L;
     
-    private String id;
+    private Integer id;
     
     private String orderNum;
     
