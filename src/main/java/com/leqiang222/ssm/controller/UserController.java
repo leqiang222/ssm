@@ -92,8 +92,24 @@ public class UserController {
     }
 
 
+    /**
+     * 给用户添加角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name = "userId", required = true) Long userId,
+                                @RequestParam(name = "ids", required = true) Long[] roleIds) {
+        userService.addRoleToUser(userId, roleIds);
+        return "redirect:findAll.do";
+    }
 
-
+    @RequestMapping("/save.do")
+    public String insertUser(User user) {
+        userService.insert(user);
+        return "redirect:findAll.do";
+    }
 
     /**
      * 查询用户以及用户可以添加的角色
@@ -129,18 +145,5 @@ public class UserController {
 //        return mv;
 //    }
 
-
-    /**
-     * 给用户添加角色
-     * @param userId
-     * @param roleIds
-     * @return
-     */
-    @RequestMapping("/addRoleToUser.do")
-    public String addRoleToUser(@RequestParam(name = "userId", required = true) Long userId,
-                                @RequestParam(name = "ids", required = true) Long[] roleIds) {
-        userService.addRoleToUser(userId, roleIds);
-        return "redirect:findAll.do";
-    }
 
 }

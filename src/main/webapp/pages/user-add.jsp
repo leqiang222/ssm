@@ -100,9 +100,9 @@
 					<div class="panel-heading">用户信息</div>
 					<div class="row data-type">
 
-						<div class="col-md-2 title">用户名称</div>
+						<div class="col-md-2 title">用户名称2</div>
 						<div class="col-md-4 data">
-							<input type="text" class="form-control" name="username"
+							<input type="text" class="form-control" name="userName"
 								placeholder="用户名称" value="">
 						</div>
 						<div class="col-md-2 title">密码</div>

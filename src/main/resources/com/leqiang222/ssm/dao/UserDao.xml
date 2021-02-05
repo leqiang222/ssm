@@ -75,6 +75,16 @@
         </if>
     </select>
 
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into ssm.user(user_name, email, password, phone_num, status)
+        values (#{userName}, #{email}, #{password}, #{phoneNum}, #{status})
+    </insert>
+
+
+
+
+
     <!--通过实体作为筛选条件查询-->
     <select id="queryAll" resultMap="UserMap">
         select
@@ -102,11 +112,7 @@
         </where>
     </select>
 
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into ssm.user(user_name, email, password, phone_num, status)
-        values (#{userName}, #{email}, #{password}, #{phoneNum}, #{status})
-    </insert>
+
 
 
 
