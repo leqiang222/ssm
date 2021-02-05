@@ -102,8 +102,14 @@ public class UserServiceImpl implements UserService {
     }
 
 
-    public void addRoleToUser(String userId, String[] roleIds) {
-        userDao.addRoleToUser(userId, roleIds);
+    public void addRoleToUser(Long userId, Long[] roleIds) {
+        for(Long roleId:roleIds){
+            userDao.addRoleToUser(userId, roleId);
+        }
+    }
+
+    public List<Role> findOtherRoles(Long userId) {
+        return this.userDao.findOtherRoles(userId);
     }
 
     /**

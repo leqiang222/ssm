@@ -1,5 +1,6 @@
 package com.leqiang222.ssm.service;
 
+import com.leqiang222.ssm.entity.Role;
 import com.leqiang222.ssm.entity.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -73,6 +74,13 @@ public interface UserService extends UserDetailsService {
      * @param userId
      * @param roleIds
      */
-    void addRoleToUser(String userId, String[] roleIds);
+    void addRoleToUser(Long userId, Long[] roleIds);
 
+    /**
+     * @Description: 查找没勾上的角色
+     * @Param: 
+     * @Author-Date: leqiang222 2021/2/5 11:46 下午 
+     */
+     
+    List<Role> findOtherRoles(Long userId);
 }

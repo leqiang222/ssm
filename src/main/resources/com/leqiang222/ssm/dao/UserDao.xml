@@ -22,10 +22,22 @@
                                       (select role_id from users_role where user_id = #{id})
     </select>
 
-    <!--查询单个-->
+    <!--查询单个user-->
     <select id="queryById" resultMap="UserMap-Role">
         select * from user where id = #{id}
     </select>
+<!--  user未添加的橘色  -->
+    <select id="findOtherRoles" resultMap="com.leqiang222.ssm.dao.RoleDao.RoleMap">
+        select * from role where id not in (select role_id from users_role where user_id = #{userId})
+    </select>
+
+<!--  添加role到user  -->
+    <insert id="addRoleToUser">
+        insert into users_role(user_id, role_id) values(#{userId},#{roleId})
+    </insert>
+
+
+
 
 <!--    <select id="queryById" resultMap="UserMap">-->
 <!--        select *, role.id as role_id from user-->
@@ -96,9 +108,7 @@
         values (#{userName}, #{email}, #{password}, #{phoneNum}, #{status})
     </insert>
 
-    <insert id="addRoleToUser">
-        insert into users_role(userId, roleId) values(#{userId},#{roleId})
-    </insert>
+
 
     <!--通过主键修改数据-->
     <update id="update">

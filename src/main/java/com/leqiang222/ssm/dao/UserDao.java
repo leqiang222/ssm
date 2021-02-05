@@ -1,5 +1,6 @@
 package com.leqiang222.ssm.dao;
 
+import com.leqiang222.ssm.entity.Role;
 import com.leqiang222.ssm.entity.User;
 import com.sun.org.apache.xml.internal.utils.NSInfo;
 import org.apache.ibatis.annotations.Param;
@@ -89,5 +90,7 @@ public interface UserDao {
      * @param userId
      * @param roleIds
      */
-    void addRoleToUser(@Param("userId") String userId, @Param("roleId") String[] roleIds);
+    void addRoleToUser(@Param("userId") Long userId, @Param("roleId") Long roleIds);
+
+    List<Role> findOtherRoles(Long userId);
 }

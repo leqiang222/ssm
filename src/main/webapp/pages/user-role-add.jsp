@@ -98,7 +98,7 @@
 				<!-- 正文区域 -->
 				<section class="content"> 
 				
-				<input type="hidden" name="userId" value="${user.id}">
+				<input type="hidden" name="userId" value="${att_user.id}">
 				
 					<table id="dataList"
 							class="table table-bordered table-striped table-hover dataTable">
@@ -113,12 +113,10 @@
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${roleList}" var="role">
+								<c:forEach items="${att_roleList}" var="role" varStatus="vs">
 									<tr>
 										<td>
-										
-										<input name="ids" type="checkbox" value="${role.id}">
-										
+										<input name="ids[${vs.count}]" type="checkbox" value="${role.id}">
 										</td>
 										<td>${role.id}</td>
 										<td>${role.roleName }</td>
@@ -148,7 +146,11 @@
 		</div>
 		<strong>Copyright &copy; 2014-2017 <a
 			href="http://www.leqiang222.com">研究院研发部</a>.
-		</strong> All rights reserved. </footer>
+		</strong> All rights reserved.
+			<div>
+				<p>data: ${att_json}</p>
+			</div>
+		</footer>
 		<!-- 底部导航 /-->
 
 	</div>

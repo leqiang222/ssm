@@ -2,6 +2,7 @@ package com.leqiang222.ssm.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageInfo;
+import com.leqiang222.ssm.entity.Role;
 import com.leqiang222.ssm.entity.User;
 import com.leqiang222.ssm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -96,19 +97,19 @@ public class UserController {
 
     /**
      * 查询用户以及用户可以添加的角色
-     * @param userid
      * @return
      * @throws Exception
      */
     @RequestMapping("/findUserByIdAndAllRole.do")
-    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) String userid) throws Exception {
+    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) Long userId) throws Exception {
         ModelAndView mv = new ModelAndView();
         //1.根据用户id查询用户
-        User userInfo = userService.queryById(Long.valueOf(userid));
+        User userInfo = userService.queryById(Long.valueOf(userId));
 //        //2.根据用户id查询可以添加的角色
-//        List<Role> otherRoles = userService.findOtherRoles(userid);
-        mv.addObject("user", userInfo);
-        mv.addObject("roleList", userInfo.getRoles());
+        List<Role> otherRoles = userService.findOtherRoles(userId);
+        mv.addObject("att_user", userInfo);
+        mv.addObject("att_roleList", otherRoles);
+        mv.addObject("att_json", JSON.toJSONString(otherRoles));
         mv.setViewName("user-role-add");
         return mv;
     }
@@ -136,8 +137,8 @@ public class UserController {
      * @return
      */
     @RequestMapping("/addRoleToUser.do")
-    public String addRoleToUser(@RequestParam(name = "userId", required = true) String userId,
-                                @RequestParam(name = "ids", required = true) String[] roleIds) {
+    public String addRoleToUser(@RequestParam(name = "userId", required = true) Long userId,
+                                @RequestParam(name = "ids", required = true) Long[] roleIds) {
         userService.addRoleToUser(userId, roleIds);
         return "redirect:findAll.do";
     }
