@@ -69,7 +69,7 @@
     <!-- 下面的xml配置的废弃，只要在serviceImple上面加上@Transactional就开启了事务  -->
     <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
 
-    <!-- 3.2 配置事务的通知 -->
+<!--    &lt;!&ndash; 3.2 配置事务的通知 &ndash;&gt;-->
 <!--    <tx:advice id="txAdvice" transaction-manager="transactionManager">-->
 <!--        <tx:attributes>-->
 <!--            <tx:method name="*" propagation="REQUIRED" read-only="false"/>-->
@@ -78,7 +78,7 @@
 <!--        </tx:attributes>-->
 <!--    </tx:advice>-->
 
-    <!-- 配置 aop -->
+<!--    &lt;!&ndash; 配置 aop &ndash;&gt;-->
 <!--    <aop:config>-->
 <!--        &lt;!&ndash; 配置切入点表达式 &ndash;&gt;-->
 <!--        <aop:pointcut expression="execution(* com.leqiang222.ssm.service.impl.*.*(..))" id="pt1"/>-->

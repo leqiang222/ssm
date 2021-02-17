@@ -241,3 +241,19 @@ FOREIGN KEY (permission_id) REFERENCES permission(id),
 FOREIGN KEY (role_id) REFERENCES role(id)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+
+-- ---------------------------------- 
+-- 访问日志
+-- ----------------------------------
+DROP TABLE IF EXISTS `sys_log`;  
+CREATE TABLE sys_log(
+    id VARCHAR(32) NOT NULL UNIQUE AUTO_INCREMENT, 
+    visit_time INTEGER,
+    username VARCHAR(50),
+    ip VARCHAR(30),
+    url VARCHAR(50),
+    execution_time INTEGER,
+    method VARCHAR(200),
+    PRIMARY KEY (`id`)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;

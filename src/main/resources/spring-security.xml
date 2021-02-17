@@ -32,7 +32,6 @@
 <!--        <security:intercept-url pattern="/**" access="hasAnyRole('role_admin, ')"/>-->
         <security:intercept-url pattern="/**" access="hasAnyRole('ROLE_ADMIN','ROLE_SUPER_ADMIN')"/>
 
-
         <!-- 定义跳转的具体的页面 -->
         <security:form-login
                 login-page="/login.jsp"

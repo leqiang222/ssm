@@ -28,8 +28,9 @@ public class UserController {
     public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
                                 @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) throws Exception {
 
-
         List<User> userList = userService.queryAll(page, size);
+        // 不使用pagehelp分页插件
+//        List<User> userList = userService.queryAllByLimit((page - 1) * size,size);
 
         PageInfo pageInfo = new PageInfo(userList);
 
@@ -59,52 +60,6 @@ public class UserController {
         return mv;
     }
 
-
-    /**
-     * 查找所有用户
-     * @return
-     * @throws Exception
-     */
-    @RequestMapping("/findAll2.do")
-    public ModelAndView findAll2(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page,
-                                @RequestParam(name = "size", required = true, defaultValue = "5") Integer size) throws Exception {
-        List<User> userList = userService.queryAllByLimit((page - 1) * size,size);
-
-        PageInfo pageInfo = new PageInfo(userList);
-
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("att_pageInfo", pageInfo);
-        mv.addObject("att_json", JSON.toJSONString(userList));
-        mv.setViewName("user-list");
-
-        return mv;
-    }
-
-    /**
-     * 通过主键查询单条数据
-     *
-     * @param id 主键
-     * @return 单条数据
-     */
-    @GetMapping("selectOne")
-    public User selectOne(Long id) {
-        return this.userService.queryById(id);
-    }
-
-
-    /**
-     * 给用户添加角色
-     * @param userId
-     * @param roleIds
-     * @return
-     */
-    @RequestMapping("/addRoleToUser.do")
-    public String addRoleToUser(@RequestParam(name = "userId", required = true) Long userId,
-                                @RequestParam(name = "ids", required = true) Long[] roleIds) {
-        userService.addRoleToUser(userId, roleIds);
-        return "redirect:findAll.do";
-    }
-
     @RequestMapping("/save.do")
     public String insertUser(User user) {
         userService.insert(user);
@@ -121,7 +76,7 @@ public class UserController {
         ModelAndView mv = new ModelAndView();
         //1.根据用户id查询用户
         User userInfo = userService.queryById(Long.valueOf(userId));
-//        //2.根据用户id查询可以添加的角色
+        //2.根据用户id查询可以添加的角色
         List<Role> otherRoles = userService.findOtherRoles(userId);
         mv.addObject("att_user", userInfo);
         mv.addObject("att_roleList", otherRoles);
@@ -130,20 +85,29 @@ public class UserController {
         return mv;
     }
 
+    /**
+     * 给用户添加角色
+     * @param userId
+     * @param roleIds
+     * @return
+     */
+    @RequestMapping("/addRoleToUser.do")
+    public String addRoleToUser(@RequestParam(name = "userId", required = true) Long userId,
+                                @RequestParam(name = "ids", required = true) Long[] roleIds) {
+        userService.addRoleToUser(userId, roleIds);
+        return "redirect:findAll.do";
+    }
 
-//    //查询用户以及用户可以添加的角色
-//    @RequestMapping("/findUserByIdAndAllRole.do")
-//    public ModelAndView findUserByIdAndAllRole(@RequestParam(name = "id", required = true) String userid) throws Exception {
-//        ModelAndView mv = new ModelAndView();
-//        //1.根据用户id查询用户
-//        User userInfo = userService.queryById(Long.valueOf(userid));
-//        //2.根据用户id查询可以添加的角色
-//        List<Role> otherRoles = userService.findOtherRoles(userid);
-//        mv.addObject("user", userInfo);
-//        mv.addObject("roleList", otherRoles);
-//        mv.setViewName("user-role-add");
-//        return mv;
-//    }
 
+    /**
+     * 通过主键查询单条数据
+     *
+     * @param id 主键
+     * @return 单条数据
+     */
+    @GetMapping("selectOne")
+    public User selectOne(Long id) {
+        return this.userService.queryById(id);
+    }
 
 }
